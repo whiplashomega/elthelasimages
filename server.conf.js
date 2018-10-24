@@ -13,7 +13,11 @@ app.start = function() {
     console.log("starting");
     
     app.use(express.static(__dirname + '/images', { maxAge: 365 }));
-    
+    app.all('/', function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+      next();
+    });
     // set the static files location /public/img will be /img for users
     app.use(express.static('.')); 
     console.log("express static loaded");
@@ -22,6 +26,8 @@ app.start = function() {
     app.listen(config.port);
     // shoutout to the user                     
     console.log('Magic happens on port ' + config.port);    
+    
+
 }
 
 app.stop = function() {
