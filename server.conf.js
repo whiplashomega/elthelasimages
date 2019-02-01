@@ -11,7 +11,11 @@ global.appRoot = path.resolve(__dirname) + config.staticDir;
 
 app.start = function() { 
     console.log("starting");
-    
+    app.use(function(req, res, next) {
+      res.header("Access-Control-Allow-Origin", "*");
+      res.header("Access-Control-Allow-Headers", "X-Requested-With");
+      next();
+    });
     app.use(express.static(__dirname + '/images', { maxAge: 365 }));
     app.all('/', function(req, res, next) {
       res.header("Access-Control-Allow-Origin", "*");
