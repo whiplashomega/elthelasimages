@@ -5,6 +5,6 @@
   "author": "Joe Harrison",
   "private": true,
   "dependencies": {
-    "express": "^4.16.3"
+    "express": "^4.19.2"
   }
 }
